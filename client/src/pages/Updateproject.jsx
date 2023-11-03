@@ -14,15 +14,18 @@ const Updateproject = () => {
   const location = useLocation()
 
 
-  // Splits path name into an array of 3, retreives last index (id path)
+  // splits path name into an array of 3, retreives last index (id path)
   const id = location.pathname.split("/")[2]
 
   const handleChange = (e) => {
     setProject((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+
+  // Retrieves the id of the selected project using useNavigation
+  // Sends a put request to the server to update the projects table/data that matches this id
+  // navigate("/") redirects user to homepage
   const handleClick = async (e) => {
-    
     e.preventDefault()
     try {
       await axios.put(`http://localhost:1414/projects/${id}`, project)

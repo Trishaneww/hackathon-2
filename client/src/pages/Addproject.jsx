@@ -10,12 +10,18 @@ const Addproject = () => {
     description: "",
   })
 
+  // navigates user back to default homepage
   const navigate = useNavigate();
 
+  // retrieves input field values
+  // creates new project data
   const handleChange = (e) => {
     setProject((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+
+  // sends post request to server
+  // sends server the newly created project object
   const handleClick = async (e) => {
     e.preventDefault()
     try {
@@ -25,8 +31,6 @@ const Addproject = () => {
       console.log(err)
     }
   }
-
-
 
   return (
     <div>
