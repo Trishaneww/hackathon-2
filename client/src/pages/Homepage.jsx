@@ -9,6 +9,7 @@ const Homepage = () => {
 
   const [projects, setProjects] = useState([])
 
+  // updates project data with the data stored in our db
   useEffect(() => {
     const fetchProjects = async () => {
         try {
@@ -22,6 +23,9 @@ const Homepage = () => {
     fetchProjects()
   }, [])
 
+  // Retrieves the id of the selected project
+  // Sends a delete request to the server to delete the project table/data that matches this id
+  // Window.location.reload() reloads page to re render data
   const handleDelete = async(id) => {
     console.log("hi")
     try {
@@ -31,7 +35,6 @@ const Homepage = () => {
         console.log(err)
     }
   }
-
 
   return (
     <>
