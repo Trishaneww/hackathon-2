@@ -35,6 +35,18 @@ const Updateproject = () => {
     }
   }
 
+  // const handleComplete = async(e) => {
+  //   e.preventDefault()
+  //   console.log("hi")
+  //   try {
+  //       await axios.put(`http://localhost:1414/projects/update/${id}`)
+  //       window.location.reload();
+  //   } catch(err) {
+  //       console.log(err)
+  //   }
+  // }
+
+
   return (
     <div>
 
@@ -43,7 +55,9 @@ const Updateproject = () => {
       <form>
         <input type="text" placeholder="title" onChange={handleChange} name="title" />
         <input type="text" placeholder="description" onChange={handleChange} name="description" />
+        <input type="text" placeholder="status" onChange={handleChange} name="status" />
         <button onClick={handleClick}>UPDATE</button>
+        {/* <button onClick={handleComplete}>COMPLETED</button> */}
       </form>
 
     </div>

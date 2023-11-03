@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 
 
-const Homepage = () => {
+const Closedproject = () => {
 
   const [projects, setProjects] = useState([])
 
@@ -13,7 +13,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
         try {
-            const res = await axios.get("http://localhost:1414/activeprojects")
+            const res = await axios.get("http://localhost:1414/closedprojects")
             console.log(res.data)
             setProjects(res.data)
         } catch (err) {
@@ -40,10 +40,7 @@ const Homepage = () => {
 
   return (
     <>
-
-        <h1>ACTIVE PROJECTS</h1>
-
-        <div className="card-container">
+        <h1>CLOSED PROJECTS</h1>
         {projects.map(project => (
             <div className="project-card" key={project.project_id}>
                 <h1>{project.title}</h1>
@@ -54,12 +51,11 @@ const Homepage = () => {
                 <button><Link to={`/update/${project.project_id}`} > Update </Link></button>
             </div>
         ))}
-        </div>
 
-        <button><Link to="/add">Add new project</Link></button>
+        <button><Link to="/">HOME</Link></button>
 
     </>
   )
 }
 
-export default Homepage
+export default Closedproject
