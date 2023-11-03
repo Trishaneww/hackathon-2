@@ -1,6 +1,6 @@
 // import express, mysql, and nodemon in terminal
-import express from "express"
-import mysql from "mysql"
+import express from "express";
+import mysql from "mysql";
 import cors from "cors";
 
 const app = express()
@@ -12,13 +12,23 @@ app.use(cors())
 const db = mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"Yy588218!",
-    database:"testdata"
+    password:"135071Aa*",
+    database:"projects"
 })
 
 app.get("/", (req, res) => {
     res.send("DEFAULT")
 })
+
+
+app.get("/projects", (req, res) => {
+    const q = "SELECT * FROM projects"
+    db.query(q, (err, data) => {
+        if(err) return res.send(err)
+        return res.send(data)
+    })
+})
+
 
 // sends query to db to retrieve all projects in project database
 app.get("/activeprojects", (req, res) => {

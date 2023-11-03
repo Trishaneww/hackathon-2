@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import './Homepage.scss'
 
 
 const Homepage = () => {
@@ -13,7 +14,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
         try {
-            const res = await axios.get("http://localhost:1414/activeprojects")
+            const res = await axios.get("http://localhost:1414/projects")
             console.log(res.data)
             setProjects(res.data)
         } catch (err) {
@@ -41,22 +42,25 @@ const Homepage = () => {
   return (
     <>
 
-        <h1>ACTIVE PROJECTS</h1>
+        <h1 className="project-card__heading">ACTIVE PROJECTS</h1>
 
         <div className="card-container">
         {projects.map(project => (
             <div className="project-card" key={project.project_id}>
-                <h1>{project.title}</h1>
-                <p>{project.description}</p>
+                <h2 className="project-card__title">{project.title}</h2>
+                <p className="project-card__description">{project.description}</p>
                 {project.task && <h2>{project.title}</h2>}
-                <p>{project.status}</p>
-                <button onClick={() => handleDelete(project.project_id)}>Delete</button>
-                <button><Link to={`/update/${project.project_id}`} > Update </Link></button>
+
+                <div>
+                  <button className="project-card__button-delete" onClick={() => handleDelete(project.project_id)}>Delete</button>
+                  <Link to={`/update/${project.project_id}`} > <button className="project-card__button-update" > Update </button> </Link>
+                </div>
+
             </div>
         ))}
         </div>
 
-        <button><Link to="/add">Add new project</Link></button>
+        <Link to="/add"><button className="project-card__button-add" >Add new project </button></Link>
 
     </>
   )
