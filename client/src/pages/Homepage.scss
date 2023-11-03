@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+
+.project-card {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+    height: 12rem;
+    border: 2px solid white;
+    border-radius: 2rem;
+    background-color: white;
+    margin: 5%;
+    &__title {
+        color: rgb(65, 5, 136);
+    }
+    &__description {    
+        padding: 1rem;
+        color: #AFAFAF;
+    }
+    &__button-delete {
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        color: rgb(65, 5, 138);
+    }
+    &__button-update {
+        padding: 0.5rem 1rem;
+        color: rgb(65, 5, 136);
+    }
+}

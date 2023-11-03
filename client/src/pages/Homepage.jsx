@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import './Homepage.scss'
 
 
 const Homepage = () => {
@@ -41,15 +42,17 @@ const Homepage = () => {
         <h1>PROJECTS</h1>
         {projects.map(project => (
             <div className="project-card" key={project.project_id}>
-                <h1>{project.title}</h1>
-                <p>{project.description}</p>
+                <h1 className="project-card__title">{project.title}</h1>
+                <p className="project-card__description">{project.description}</p>
                 {project.task && <h2>{project.title}</h2>}
-                <button onClick={() => handleDelete(project.project_id)}>Delete</button>
-                <button><Link to={`/update/${project.project_id}`} > Update </Link></button>
+                <div>
+                  <button className="project-card__button-delete" onClick={() => handleDelete(project.project_id)}>Delete</button>
+                  <button className="project-card__button-update" ><Link to={`/update/${project.project_id}`} > Update </Link></button>
+                </div>
             </div>
         ))}
 
-        <button><Link to="/add">Add new project</Link></button>
+        <button className="project-card__button-add" ><Link to="/add">Add new project</Link></button>
 
 
 
