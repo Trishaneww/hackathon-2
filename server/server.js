@@ -1,6 +1,6 @@
 // import express, mysql, and nodemon in terminal
-import express from "express"
-import mysql from "mysql"
+import express from "express";
+import mysql from "mysql";
 import cors from "cors";
 
 const app = express()
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
     res.send("DEFAULT")
 })
 
-// sends query to db to retrieve all projects in project database
+
 app.get("/projects", (req, res) => {
     const q = "SELECT * FROM projects"
     db.query(q, (err, data) => {
@@ -28,6 +28,26 @@ app.get("/projects", (req, res) => {
         return res.send(data)
     })
 })
+
+
+// sends query to db to retrieve all projects in project database
+app.get("/activeprojects", (req, res) => {
+    const q = "SELECT * FROM projects WHERE status = 'active'"
+    db.query(q, (err, data) => {
+        if(err) return res.send(err)
+        return res.send(data)
+    })
+})
+
+
+app.get("/closedprojects", (req, res) => {
+    const q = "SELECT * FROM projects WHERE status = 'closed'"
+    db.query(q, (err, data) => {
+        if(err) return res.send(err)
+        return res.send(data)
+    })
+})
+
 // sends query to db to add a row of data to project db, using req.body params 
 app.post("/projects", (req,res) => {
     const q = "INSERT INTO projects (`title`, `description`, `todolist_id`) VALUES (?)";
@@ -57,10 +77,11 @@ app.delete("/projects/:id", (req,res) => {
 // sends query to db to update a row of data in project db that matches provided ID, using req.body params 
 app.put("/projects/:id", (req,res) => {
     const projectId = req.params.id;
-    const q = "UPDATE projects SET `title` = ?, `description` = ? WHERE project_id = ?";
+    const q = "UPDATE projects SET `title` = ?, `description` = ? , `status` = ? WHERE project_id = ?";
     const values = [
         req.body.title,
         req.body.description,
+        req.body.status,
     ];
 
     db.query(q, [...values, projectId], (err,data) => {
@@ -68,6 +89,22 @@ app.put("/projects/:id", (req,res) => {
         return res.json("PROJECT SUCCESFULY UPDATED")
     })
 })
+
+
+// app.put("/projects/update/:id", (req,res) => {
+//     const projectId = req.params.id;
+//     const q = "UPDATE projects SET `status` = `?`, WHERE project_id = ?";
+//     const values = [
+//         req.body.status
+//     ];
+
+//     console.log("helllo world")
+  
+//     db.query(q, [...values, projectId], (err,data) => {
+//         if (err) return res.json(err);
+//         return res.json("PROJECT SUCCESFULY MOVED")
+//     })
+// })
 
 
 app.listen(1414, () => {

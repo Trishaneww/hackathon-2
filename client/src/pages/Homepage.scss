@@ -27,10 +27,42 @@ a {
     &__button-delete {
         padding: 0.5rem 1rem;
         margin: 0.5rem;
+        background-color: white;
+        border: 1px solid rgb(65, 5, 138);
         color: rgb(65, 5, 138);
+        font-weight: bold;
+        border-radius: 0.5rem;
+        cursor:pointer;
+        &:hover {
+            background-color: rgb(65, 5, 138);
+            color: white;
+        }
     }
     &__button-update {
         padding: 0.5rem 1rem;
-        color: rgb(65, 5, 136);
+        background-color: white;
+        color: rgb(65, 5, 138);
+        border: 1px solid rgb(65, 5, 138);
+        font-weight: bold;
+        border-radius: 0.5rem;
+        cursor:pointer;
+        &:hover {
+            background-color: rgb(65, 5, 138);
+            color: white;
+        }
+    }
+    &__button-add {
+        padding: 1rem 1.5rem;
+        background-color: white;
+        color: rgb(65, 5, 138);
+        border: 1px solid rgb(65, 5, 138);
+        border-radius: 0.5rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+        cursor:pointer;
+        &:hover {
+            background-color: rgb(65, 5, 138);
+            color: white;
+        }
     }
 }

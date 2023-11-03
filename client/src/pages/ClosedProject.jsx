@@ -3,10 +3,9 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
-import './Homepage.scss'
 
 
-const Homepage = () => {
+const Closedproject = () => {
 
   const [projects, setProjects] = useState([])
 
@@ -14,7 +13,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
         try {
-            const res = await axios.get("http://localhost:1414/projects")
+            const res = await axios.get("http://localhost:1414/closedprojects")
             console.log(res.data)
             setProjects(res.data)
         } catch (err) {
@@ -41,29 +40,22 @@ const Homepage = () => {
 
   return (
     <>
-
-        <h1 className="project-card__heading">ACTIVE PROJECTS</h1>
-
-        <div className="card-container">
+        <h1>CLOSED PROJECTS</h1>
         {projects.map(project => (
             <div className="project-card" key={project.project_id}>
-                <h2 className="project-card__title">{project.title}</h2>
-                <p className="project-card__description">{project.description}</p>
+                <h1>{project.title}</h1>
+                <p>{project.description}</p>
                 {project.task && <h2>{project.title}</h2>}
-
-                <div>
-                  <button className="project-card__button-delete" onClick={() => handleDelete(project.project_id)}>Delete</button>
-                  <Link to={`/update/${project.project_id}`} > <button className="project-card__button-update" > Update </button> </Link>
-                </div>
-
+                <p>{project.status}</p>
+                <button onClick={() => handleDelete(project.project_id)}>Delete</button>
+                <button><Link to={`/update/${project.project_id}`} > Update </Link></button>
             </div>
         ))}
-        </div>
 
-        <Link to="/add"><button className="project-card__button-add" >Add new project </button></Link>
+        <button><Link to="/">HOME</Link></button>
 
     </>
   )
 }
 
-export default Homepage
+export default Closedproject
